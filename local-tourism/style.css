@@ -136,7 +136,6 @@ nav {
     color: rgb(26, 82, 70);
 }
 
-
 .learn-button {
     text-decoration: none;
     color: rgb(241, 241, 241);
@@ -148,4 +147,20 @@ nav {
     justify-content: center;
     border-radius: 10px;
     border: 1px solid rgb(112, 112, 112);
+}
+
+@keyframes floatCam {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.cam {
+    animation: floatCam 4s ease-in-out infinite;
 }
