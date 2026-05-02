@@ -164,3 +164,17 @@ nav {
 .cam {
     animation: floatCam 4s ease-in-out infinite;
 }
+
+.survey-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #163B37;
+    /* height: 100vh; */
+}
+.divider {
+    border-bottom: 2px solid rgba(184, 184, 184, 0.3);
+    height: 2px;
+    width: 100em;
+    margin: 30px 0px;
+}
