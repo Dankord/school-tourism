@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="survey-form.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a class="back-link" href="../landing.html">Back</a>
+        <h1>Educational Tourism Survey</h1>
+    </nav>
+    <main class="main-content">
+        <div class="progress">
+            <div class="progress-between">
+                <p>Step 1-3</p>
+                <p>~5 minutes to complete</p>
+            </div>
+            <div class="progressContainer">
+                <div class="progressBar" id="progressBar"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="form-header">
+                <h1>Tell us about your trip</h1>
+                <p>Where did your adventure journey take you?</p>
+            </div>
+            <form id="form" action="form-submit.php" method="POST">
+                <!-- step 1 -->
+                <div class="formStep active">
+                    <div class="destination-name">
+                        <label>Destination Name</label>
+                        <input type="text" id="text" class="input-text" name="destination-name"
+                            placeholder="e.g., Boracay, Batanes, Bohol" required>
+                    </div>
+                    <div class="trip-dropdown">
+                        <div class="trip">
+                            <label>Trip Duration</label>
+                            <Select id="trip-duration" name="trip-duration" class="duration" required>
+                                <option value="">Select Duration</option>
+                                <option value="1-3">1-3 Days</option>
+                                <option value="1w">1 Week</option>
+                                <option value="2w">2 Weeks</option>
+                                <option value="3+w">3+ Weeks</option>
+                            </Select>
+                        </div>
+                        <div class="trip">
+                            <label>Trip Type</label>
+                            <Select id="trip-type" name="trip-type" class="duration" required>
+                                <option value="">Select Type</option>
+                                <option value="school organized">School Organized</option>
+                                <option value="family trip">Family Trip</option>
+                                <option value="university program">University Program</option>
+                                <option value="getaway trip">Getaway trip</option>
+                            </Select>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="buttons">
+                        <button class="previous disable" type="button" disabled>Previous</button>
+                        <button class="next" type="button">Next</button>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="formStep">
+                    <div class="form-likert-scale">
+                        <label class="likert-label">How much did you enjoy it?</label>
+                        <div class="scale">
+                            <input type="radio" id="enjoyment-1" name="satisfaction" class="likert" value="1" required>
+                            <label for="enjoyment-1">1</label>
+                            <input type="radio" id="enjoyment-2" name="satisfaction" class="likert" value="2">
+                            <label for="enjoyment-2">2</label>
+                            <input type="radio" id="enjoyment-3" name="satisfaction" class="likert" value="3">
+                            <label for="enjoyment-3">3</label>
+                            <input type="radio" id="enjoyment-4" name="satisfaction" class="likert" value="4">
+                            <label for="enjoyment-4">4</label>
+                            <input type="radio" id="enjoyment-5" name="satisfaction" class="likert" value="5">
+                            <label for="enjoyment-5">5</label>
+                        </div>
+                    </div>
+                    <div class="form-likert-scale">
+                        <label class="likert-label">The trip helped improve your understanding of the local tour
+                            spot</label>
+                        <div class="scale">
+                            <input type="radio" id="understanding-1" name="understanding" class="likert" value="1" required>
+                            <label for="understanding-1">1</label>
+                            <input type="radio" id="understanding-2" name="understanding" class="likert" value="2">
+                            <label for="understanding-2">2</label>
+                            <input type="radio" id="understanding-3" name="understanding" class="likert" value="3">
+                            <label for="understanding-3">3</label>
+                            <input type="radio" id="understanding-4" name="understanding" class="likert" value="4">
+                            <label for="understanding-4">4</label>
+                            <input type="radio" id="understanding-5" name="understanding" class="likert" value="5">
+                            <label for="understanding-5">5</label>
+                        </div>
+                    </div>
+                    <div class="form-likert-scale">
+                        <label class="likert-label">The destination was enjoyable and well-maintained</label>
+                        <div class="scale">
+                            <input type="radio" id="maintenance-1" name="maintenance" class="likert" value="1" required>
+                            <label for="maintenance-1">1</label>
+                            <input type="radio" id="maintenance-2" name="maintenance" class="likert" value="2">
+                            <label for="maintenance-2">2</label>
+                            <input type="radio" id="maintenance-3" name="maintenance" class="likert" value="3">
+                            <label for="maintenance-3">3</label>
+                            <input type="radio" id="maintenance-4" name="maintenance" class="likert" value="4">
+                            <label for="maintenance-4">4</label>
+                            <input type="radio" id="maintenance-5" name="maintenance" class="likert" value="5">
+                            <label for="maintenance-5">5</label>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="buttons">
+                        <button class="previous" type="button">Previous</button>
+                        <button class="next" type="button">Next</button>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="formStep">
+                    <div class="form-recommendation">
+                        <label>Would you recommend this place to others?</label>
+                        <div class="form-recommend">
+                            <label for="rec-yes"><input type="radio" id="rec-yes" name="recommendation"
+                                    class="recommend-radio" value="yes" required>Yes</label>
+                            <label for="rec-no"><input type="radio" id="rec-no" name="recommendation"
+                                    class="recommend-radio" value="no" required>No</label>
+                        </div>
+                    </div>
+                    <div class="form-textArea">
+                        <label>What suggestions can you give to improve future trips?</label>
+                        <textarea id="addition" name="suggestion" placeholder="Any suggestion for future travelers"></textarea>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="buttons">
+                        <button class="previous" type="button">Previous</button>
+                        <button class="next" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </main>
+    <script src="survey-form.js"></script>
+</body>
+
+</html>
