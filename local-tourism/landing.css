@@ -84,7 +84,7 @@ nav {
 }
 .home-content {
     padding: 0 20em;
-    height: calc(100vh - 53px);
+    height: calc(100vh - 71px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -147,6 +147,12 @@ nav {
     justify-content: center;
     border-radius: 10px;
     border: 1px solid rgb(112, 112, 112);
+    transition: all 0.2s ease;
+}
+
+.learn-button:hover {
+    background: rgb(161, 161, 161);
+    color: #2BF8D6;
 }
 
 @keyframes floatCam {

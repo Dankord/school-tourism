@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=devicee-width, initial-scale=1.0">
+    <title>Response Submitted</title>
+    <link rel="stylesheet" href="survey-form.css">
+</head>
+
+<body>
+    <main class="main-content">
+        <div class="container">
+            <div class="check">
+                <div class="logo-container">
+                    <i data-lucide="circle-check-big" class="circle-check-big" width="80" height="80"></i>
+                </div>
+            </div>
+            <div class="center-header">
+                <h1>THANK YOU!</h1>
+                <h2>Your survey has been successfully submitted</h2>
+            </div>
+            <div class="submission-container">
+                <h2>Submission ID</h2>
+                <p id="code"></p>
+                <h3>Your response has been recorded and will help shape future educational tourism experiences.</h3>
+            </div>
+            <div class="status-between">
+                <div class="status">
+                    <h1>Status</h1>
+                    <p>Submitted</p>
+                </div>
+                <div class="privacy">
+                    <h1>Privacy</h1>
+                    <p>Anonymous </p>
+                </div>
+            </div>
+            <div class="insight-container">
+                <p>Your insights are valuable! You're now part of a global community helping
+                    to improve travel experiences for everyone.</p>
+            </div>
+            <div class="buttons success">
+                <a class="submit-another" href="survey-form.html"><i data-lucide="share-2"></i>Submit another</a>
+                <a class="return" href="../landing.html">Return Home</a>
+            </div>
+            <div class="divider"></div>
+            <div class="question">
+                <p>Have questions? We'd love to hear from you. <a href="https://www.facebook.com/johnkervin.ganzon.1/" target="_blank">Contact Us</a></p>
+            </div>
+        </div>
+    </main>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons()</script>
+    <script>
+        const parameter = new URLSearchParams(window.location.search);
+        const code = parameter.get('code');
+
+        document.getElementById('code').textContent = code || "N/A";
+    </script>
+</body>
+
+</html>
