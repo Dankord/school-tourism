@@ -1,5 +1,5 @@
 * {
-    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', Helvetica, Arial, sans-serif;
 }
 
 html {
@@ -74,6 +74,7 @@ nav {
     color: white;
 }
 .title-description h1 {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 64px;
     font-weight: 700;
 }
@@ -84,7 +85,7 @@ nav {
 }
 .home-content {
     padding: 0 20em;
-    height: calc(100vh - 71px);
+    height: calc(100vh - 74px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -152,7 +153,18 @@ nav {
 
 .learn-button:hover {
     background: rgb(161, 161, 161);
-    color: #2BF8D6;
+    color: black;
+}
+
+@keyframes camEnterFromTheSide {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
 }
 
 @keyframes floatCam {
@@ -167,8 +179,30 @@ nav {
     }
 }
 
+@keyframes pageFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav {
+    animation: pageFadeUp 0.5s ease 0.2s both;
+}
+
+.title-description {
+    animation: pageFadeUp 0.5s ease 0.2s both;
+}
+
 .cam {
-    animation: floatCam 4s ease-in-out infinite;
+    animation:
+    camEnterFromTheSide 0.80s ease-out 0.2s forwards,
+    floatCam 3s ease-in-out infinite;
+    animation-delay: 0s, 0.9s;
 }
 
 .survey-part {
