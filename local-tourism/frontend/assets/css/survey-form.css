@@ -364,7 +364,7 @@ label  {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 60px;
+    margin: 0 170px;
 }
 
 .status,
@@ -479,7 +479,7 @@ label  {
     }
 
     .status-between {
-        margin: 0 40px;
+        margin: 0 100px;
     }
 }
 
@@ -555,7 +555,7 @@ label  {
     }
 
     .status-between {
-        margin: 0 16px;
+        margin: 0 90px;
         gap: 20px;
     }
 
