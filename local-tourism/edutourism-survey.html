@@ -28,7 +28,7 @@
   </div>
 
   <div class="cta-strip">
-    <p><strong>Join 2513+ students</strong> already sharing their experiences</p>
+    <p><strong id="joinedCount">Join 0 students</strong> already sharing their experiences</p>
     <a href="landing.html" class="btn btn-teal">Add your Destination</a>
   </div>
 
@@ -45,20 +45,15 @@
   </footer>
 
   <script>
-    const destinations = [
-      { name: "Banaue Rice Terraces",        students: 245, rec: 78,  stars: 3 },
-      { name: "Batanes",                      students: 245, rec: 89,  stars: 4 },
-      { name: "Palau Island",                 students: 245, rec: 67,  stars: 3 },
-      { name: "Boracay",                      students: 245, rec: 91,  stars: 5 },
-      { name: "Kawasan Falls",                students: 245, rec: 97,  stars: 5 },
-      { name: "Bohol",                        students: 245, rec: 83,  stars: 4 },
-      { name: "Puerto Princesa Underground River", students: 245, rec: 83, stars: 4 },
-    ];
+    const tbody = document.getElementById('tableBody');
+    const joinedCount = document.getElementById('joinedCount');
 
-    function renderStars(count) {
+    function renderStarsFromSatisfaction(satisfactionValue) {
+      const starsCount = Math.max(0, Math.min(5, Math.round(Number(satisfactionValue) || 0)));
       let html = '<span class="stars">';
+
       for (let i = 1; i <= 5; i++) {
-        if (i <= count) {
+        if (i <= starsCount) {
           html += `<svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
           </svg>`;
@@ -68,20 +63,68 @@
           </svg>`;
         }
       }
+
       html += '</span>';
       return html;
     }
 
-    const tbody = document.getElementById('tableBody');
-    destinations.forEach(d => {
-      tbody.innerHTML += `
+    function formatRecommendationPercent(value) {
+      const numeric = Number(value) || 0;
+      return Number.isInteger(numeric) ? `${numeric}%` : `${numeric.toFixed(2)}%`;
+    }
+
+    function renderRows(destinations) {
+      if (!destinations.length) {
+        tbody.innerHTML = `
+          <tr>
+            <td class="col-destination" colspan="4">No survey responses yet.</td>
+          </tr>`;
+        return;
+      }
+
+      tbody.innerHTML = destinations.map((d) => `
         <tr>
           <td class="col-destination">${d.name}</td>
           <td class="col-students">${d.students}</td>
-          <td class="col-recommendation"><span>${d.rec}%</span></td>
-          <td class="col-satisfaction">${renderStars(d.stars)}</td>
-        </tr>`;
-    });
+          <td class="col-recommendation"><span>${formatRecommendationPercent(d.recommendation_percent)}</span></td>
+          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_satisfaction)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function updateJoinedCounter(totalResponses) {
+      const count = Number(totalResponses) || 0;
+      joinedCount.textContent = `Join ${count.toLocaleString()} students`;
+    }
+
+    async function loadSurveyInsights() {
+      try {
+        const response = await fetch('get-response.php', {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch survey responses');
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.message || 'Unexpected response');
+        }
+
+        renderRows(data.destinations || []);
+        updateJoinedCounter(data.summary?.total_responses);
+      } catch (error) {
+        tbody.innerHTML = `
+          <tr>
+            <td class="col-destination" colspan="4">Unable to load survey insights right now.</td>
+          </tr>`;
+        updateJoinedCounter(0);
+      }
+    }
+
+    loadSurveyInsights();
   </script>
 </body>
 </html>
