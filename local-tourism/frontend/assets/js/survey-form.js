@@ -1,7 +1,8 @@
 const steps = document.querySelectorAll('.formStep');
-const next = document.querySelectorAll('.next');
+const next = document.querySelectorAll('.next[type="button"]');
 const previous = document.querySelectorAll('.previous');
 const progressBar = document.getElementById('progressBar');
+const form = document.getElementById('form');
 
 let currentStep = 0;
 
@@ -36,3 +37,10 @@ function updateProgress() {
 }
 
 showStep(currentStep);
+
+if (form) {
+    form.addEventListener('submit', () => {
+        // Force explicit POST PLEASE, this took me 2 HOURSSS
+        form.method = 'POST';
+    });
+}

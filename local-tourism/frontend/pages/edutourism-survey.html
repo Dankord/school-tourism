@@ -30,6 +30,8 @@
           <th class="col-destination">Destination</th>
           <th>Students</th>
           <th>Recommendation</th>
+          <th>Maintenance</th>
+          <th>Learning</th>
           <th>Satisfaction</th>
         </tr>
       </thead>
@@ -87,7 +89,7 @@
       if (!destinations.length) {
         tbody.innerHTML = `
           <tr>
-            <td class="col-destination" colspan="4">No survey responses yet.</td>
+            <td class="col-destination" colspan="6">No survey responses yet.</td>
           </tr>`;
         return;
       }
@@ -97,6 +99,8 @@
           <td class="col-destination">${d.name}</td>
           <td class="col-students">${d.students}</td>
           <td class="col-recommendation"><span>${formatRecommendationPercent(d.recommendation_percent)}</span></td>
+          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_maintenance)}</td>
+          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_understanding)}</td>
           <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_satisfaction)}</td>
         </tr>
       `).join('');
@@ -128,7 +132,7 @@
       } catch (error) {
         tbody.innerHTML = `
           <tr>
-            <td class="col-destination" colspan="4">Unable to load survey insights right now.</td>
+            <td class="col-destination" colspan="6">Unable to load survey insights right now.</td>
           </tr>`;
         updateJoinedCounter(0);
       }

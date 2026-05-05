@@ -3,12 +3,13 @@
 require_once __DIR__.'/../config/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    http_response_code(403);
+    http_response_code(405);
+    header('Allow: POST');
     echo json_encode([
         'success' => false,
         'message' => 'Method not allowed',
     ]);
-    exit("forbidden");
+    exit;
 }
 
 $destination = trim($_POST['destination-name'] ?? '');
