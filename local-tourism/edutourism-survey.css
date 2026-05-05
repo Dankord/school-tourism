@@ -5,24 +5,104 @@
 }
 
 :root {
-  --bg:         #1b3a35;
-  --surface:    #1e4038;
-  --border:     #2a5248;
-  --teal:       #2ecfae;
-  --teal-dark:  #24b097;
-  --gold:       #e8b84b;
-  --text:       #e8f0ee;
-  --muted:      #7aada0;
-  --header-col: #2ecfae;
+  --bg:          #0d1f1c;
+  --surface:     rgba(10, 30, 26, 0.75);
+  --border:      rgba(46, 207, 174, 0.15);
+  --teal:        #2ecfae;
+  --teal-dark:   #24b097;
+  --gold:        #e8b84b;
+  --text:        #e8f0ee;
+  --muted:       #8abdb0;
+  --header-col:  #2ecfae;
+  --navbar-bg:   rgba(8, 20, 18, 0.85);
 }
 
 body {
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
   color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('https://content.skyscnr.com/m/4c718ac4d7d4256e/original/Bohol-Philippines-2019-Brendan-van-Son-25.jpg?resize=1224%3Aauto');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 15, 12, 0.82) 0%,
+    rgba(8, 22, 18, 0.78) 50%,
+    rgba(5, 15, 12, 0.88) 100%
+  );
+  z-index: -1;
+}
+
+.navbar {
+  background: var(--navbar-bg);
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-back {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.18s;
+}
+
+.nav-back:hover { color: var(--text); }
+
+.nav-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-cta {
+  background: var(--teal);
+  color: #0d2b26;
+  padding: 7px 18px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.12s;
+}
+
+.nav-cta:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
 }
 
 .hero {
@@ -36,12 +116,14 @@ body {
   color: var(--text);
   letter-spacing: -0.01em;
   margin-bottom: 10px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 
 .hero p {
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 400;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 
 .card {
@@ -51,6 +133,9 @@ body {
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 table {
@@ -58,9 +143,7 @@ table {
   border-collapse: collapse;
 }
 
-thead tr {
-  background: transparent;
-}
+thead tr { background: transparent; }
 
 thead th {
   padding: 14px 20px;
@@ -72,18 +155,14 @@ thead th {
   text-align: left;
 }
 
-thead th:not(:first-child) {
-  text-align: center;
-}
+thead th:not(:first-child) { text-align: center; }
 
 tbody tr {
   border-top: 1px solid var(--border);
   transition: background 0.18s;
 }
 
-tbody tr:hover {
-  background: rgba(46, 207, 174, 0.05);
-}
+tbody tr:hover { background: rgba(46, 207, 174, 0.07); }
 
 tbody td {
   padding: 16px 20px;
@@ -107,14 +186,9 @@ tbody td {
   color: var(--text);
 }
 
-.col-satisfaction {
-  text-align: center;
-}
+.col-satisfaction { text-align: center; }
 
-.stars {
-  display: inline-flex;
-  gap: 3px;
-}
+.stars { display: inline-flex; gap: 3px; }
 
 .star {
   width: 16px;
@@ -130,7 +204,7 @@ tbody td {
 
 .cta-strip {
   max-width: 740px;
-  margin: 0 auto 0;
+  margin: 0 auto;
   width: calc(100% - 48px);
   text-align: center;
   padding: 20px 0 28px;
@@ -140,11 +214,10 @@ tbody td {
   font-size: 0.85rem;
   color: var(--muted);
   margin-bottom: 14px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
-.cta-strip p strong {
-  color: var(--text);
-}
+.cta-strip p strong { color: var(--text); }
 
 .btn {
   display: inline-block;
@@ -185,12 +258,14 @@ tbody td {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.5rem, 3.5vw, 2.1rem);
   margin-bottom: 12px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 
 .ready p {
   color: var(--muted);
   font-size: 0.9rem;
   margin-bottom: 24px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
 }
 
 footer {
@@ -200,6 +275,9 @@ footer {
   padding: 18px 24px;
   font-size: 0.78rem;
   color: var(--muted);
+  background: var(--navbar-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 @keyframes fadeUp {
