@@ -12,11 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     ]);
     exit;
 }
-
-$fetchedSummary = "
+// get all the total
+$totalRespondent = "
     SELECT
-        COUNT(*) AS total_responses,
-        SUM(CASE WHEN LOWER(recommendation) = 'yes' THEN 1 ELSE 0 END) AS total_recommend_yes
+        COUNT(*) AS total_responses
     FROM responses
 ";
 
@@ -34,11 +33,11 @@ $fetchDestinations = "
 ";
 
 // set the data 
-$summaryResult = $connection->query($fetchedSummary);
+$totalRespondent = $connection->query($totalRespondent);
 $destinationResult = $connection->query($fetchDestinations);
 
 // catcher if this fail, all fail, help me.
-if (!$summaryResult || !$destinationResult) {
+if (!$totalRespondent || !$destinationResult) {
     http_response_code(500);
     echo json_encode([
         'success' => false,
@@ -47,7 +46,7 @@ if (!$summaryResult || !$destinationResult) {
     exit;
 }
 
-$summaryRow = $summaryResult->fetch_assoc();
+$summaryRow = $totalRespondent->fetch_assoc();
 $totalResponses = (int) ($summaryRow['total_responses'] ?? 0);
 
 $destinations = [];
