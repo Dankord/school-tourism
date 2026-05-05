@@ -1,5 +1,5 @@
 * {
-    font-family: 'Inter', Helvetica, Arial, sans-serif;
+    font-family: 'DM Sans', Helvetica, Arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -9,7 +9,10 @@ html {
 
 body {
     margin: 0;
-    background-color: #163B37;
+    background: linear-gradient(rgb(16, 54, 45), rgba(32, 88, 53, 0.4)), url('https://i0.wp.com/handluggageonly.co.uk/wp-content/uploads/2018/12/Hand-Luggage-Only-10-5.jpg?w=1600&ssl=1');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 nav {
@@ -34,6 +37,7 @@ nav {
 
 .navbar h1 {
     margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
     font-size: 32px;
     color: white;
@@ -102,6 +106,7 @@ main {
 
 .form-header h1 {
     color: white;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 32px;
     font-weight: bold;
     margin: 0;
@@ -319,6 +324,7 @@ label  {
 }
 .center-header h1 {
     margin: 0;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 40px;
     font-weight: bold;
     color:#2BF8D6;
@@ -355,7 +361,7 @@ label  {
 
 .submission-container p {
     color:#2BF8D6;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 32px;
     margin: 0;
 }
@@ -470,6 +476,29 @@ label  {
 
 .question a:hover {
     text-decoration:underline;
+}
+
+@keyframes pageFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav {
+    animation: pageFadeUp 0.45s ease both;
+}
+
+.progress {
+    animation: pageFadeUp 0.45s ease 0.1s both;
+}
+
+.container {
+    animation: pageFadeUp 0.5s ease 0.2s both;
 }
 
 @media (max-width: 1024px) {
