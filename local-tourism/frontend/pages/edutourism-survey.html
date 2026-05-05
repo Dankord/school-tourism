@@ -1,17 +1,21 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EduTourism – Survey Insights</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="edutourism-survey.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/edutourism-survey.css" />
 </head>
+
 <body>
 
   <nav class="navbar">
     <a href="landing.html" class="nav-back">&#8592; Back</a>
     <span class="nav-title">Educational Tourism Survey Portal</span>
-    <a href="waley pa" class="nav-cta">Take Survey</a>
+    <a href="survey-form.html" class="nav-cta">Take Survey</a>
   </nav>
 
   <div class="hero">
@@ -105,7 +109,7 @@
 
     async function loadSurveyInsights() {
       try {
-        const response = await fetch('get-response.php', {
+        const response = await fetch('../../backend/api/get-response.php', {
           method: 'GET',
           headers: { 'Accept': 'application/json' }
         });

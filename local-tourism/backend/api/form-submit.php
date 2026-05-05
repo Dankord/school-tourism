@@ -4,6 +4,10 @@ require_once __DIR__.'/../config/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     http_response_code(403);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Method not allowed',
+    ]);
     exit("forbidden");
 }
 
@@ -50,5 +54,5 @@ if (!$insert->execute()) {
 }
 
 // echo "Success in POST";
-header("Location: form-success.html?code=" . urlencode($submissionCode));
+header("Location: ../../frontend/pages/form-success.html?code=" . urlencode($submissionCode));
 exit;
