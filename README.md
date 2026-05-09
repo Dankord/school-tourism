@@ -54,7 +54,7 @@ cp .env.example .env
 
 ---
 
-## 5. Database Setup (if applicable)
+## 4. Database Setup (if applicable)
 
 1. Create a database in your local environment
 2. Import the provided SQL file (if any)
