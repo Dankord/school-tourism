@@ -15,16 +15,24 @@
 
 <body>
     <nav class="navbar">
+        <div class="logo-container">
+            <i class="logo" data-lucide="earth"></i>
+            <h1>EduTourism</h1>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <i data-lucide="menu"></i>
+        </button>
         <div class="navigations">
             <ul class="nav-links">
-                <!-- <li><a href="#home" class="home-link">Home</a></li> -->
+                <li><a href="#home" class="home-link">Home</a></li>
+                <li><a href="#mission" class="home-link">Mission</a></li>
+                <li><a href="#experience" class="home-link">Experience</a></li>
                 <li><a href="survey-form.html" class="nav-button">Take Survey</a></li>
-                <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
         </div>
     </nav>
     <main>
-        <div class="home-content">
+        <div class="home-content" id="home">
             <div class="title-description">
                 <div class="pill">
                     <p class="pill-text">Welcome to EduTourism</p>
@@ -35,15 +43,15 @@
                 <div class="landing-buttons">
                     <a class="survey-button" href="survey-form.html">Take survey<i class="arrow-right"
                             data-lucide="arrow-right"></i></a>
-                    <a class="learn-button" href="edutourism-survey.html">Learn More</a>
+                    <a class="learn-button" href="#mission">Learn More</a>
                 </div>
             </div>
             <div class="tour-img">
                 <img class="cam" src="../../../img/cam.png" alt="Camera" height="560">
             </div>
         </div>
-        <div class="extra-info">
-            <div class="mission" id="mission">
+        <div class="extra-info" id="mission">
+            <div class="mission">
                 <div class="mission-container">
                     <h1>OUR <span class="font-change">MISSION</span></h1>
                     <div class="mission-between">
@@ -94,7 +102,7 @@
                                 <div class="progress">
                                     <div class="progress-between">
                                         <p>Luzon</p>
-                                        <p class="review">1 reviews</p>
+                                        <p class="review" id="luzon-review">0 reviews</p>
                                     </div>
                                     <div class="progressContainer">
                                         <div class="progressBar" id="luzon"></div>
@@ -103,7 +111,7 @@
                                 <div class="progress">
                                     <div class="progress-between">
                                         <p>Visayas</p>
-                                        <p class="review">1 reviews</p>
+                                        <p class="review" id="visayas-review">0 reviews</p>
                                     </div>
                                     <div class="progressContainer">
                                         <div class="progressBar" id="visayas"></div>
@@ -112,15 +120,18 @@
                                 <div class="progress">
                                     <div class="progress-between">
                                         <p>Mindanao</p>
-                                        <p class="review">1 reviews</p>
+                                        <p class="review" id="mindanao-review">0 reviews</p>
                                     </div>
                                     <div class="progressContainer">
                                         <div class="progressBar" id="mindanao"></div>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
-                                <div class="coverage-pill">
-                                    <div class="destination">Boracay</div>
+                                <div>
+                                    <p class="pop-des">Popular Destinations:</p>
+                                    <div class="coverage-pill" id="destination-list">
+                                        <div class="destination">Loading...</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,16 +146,31 @@
                 </div>
                 <div class="card-container">
                     <div class="card">
-                        <h2>Help Others Explore</h2>
-                        <p>Your insights guide students planning their local trips.</p>
+                        <div>
+                            <i class="mission-icon" data-lucide="camera"></i>
+                        </div>
+                        <div>
+                            <h2>Help Others Explore</h2>
+                            <p>Your insights guide students planning their local trips.</p>
+                        </div>
                     </div>
                     <div class="card">
-                        <h2>Support Local Tourism</h2>
-                        <p>Promote Filipino destinations and local businesses.</p>
+                        <div>
+                            <i class="mission-icon" data-lucide="map-pin"></i>
+                        </div>
+                        <div>
+                            <h2>Support Local Tourism</h2>
+                            <p>Promote Filipino destinations and local businesses.</p>
+                        </div>
                     </div>
                     <div class="card">
-                        <h2>See your Impact</h2>
-                        <p>Your insights guide students planning their local trips.</p>
+                        <div>
+                            <i class="mission-icon" data-lucide="trending-up"></i>
+                        </div>
+                        <div>
+                            <h2>See your Impact</h2>
+                            <p>Your insights guide students planning their local trips.</p>
+                        </div>
                     </div>
                 </div>
                 <div class="experience-headers sub">
@@ -161,6 +187,7 @@
     </footer>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>lucide.createIcons()</script>
+    <script src="../assets/js/reviews.js"></script>
 </body>
 
 </html>

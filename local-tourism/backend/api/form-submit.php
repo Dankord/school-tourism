@@ -38,7 +38,7 @@ function generateSubmissionCode($prefix = 'GR1') {
 
 $insert = $connection->prepare("
     INSERT INTO responses
-    (submission_id, destination_name, trip_date, trip_type, satisfaction, understanding, maintenance, transportation, affordable, facilities, recommendation, issues, suggestion)
+    (submission_id, destination_name, province, trip_date, trip_type, satisfaction, understanding, maintenance, transportation, affordable, facilities, recommendation, issues, suggestion)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
