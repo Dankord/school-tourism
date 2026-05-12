@@ -165,6 +165,33 @@ label  {
     gap: 20px;
 }
 
+.dropdown {
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #163B37;
+    color: white;
+    border: 1px solid #9b9b9b;
+    font-size: 14px;
+    /* margin: 25px; */
+}
+
+.trip-date {
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #163B37;
+    color: white;
+    border: 1px solid #9b9b9b;
+    font-size: 14px;
+}
+
+/* Annoying to find out i can do this, THIS LATE, could have been helpful */
+.trip-date[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
 .divider {
     border-bottom: 2px solid rgba(184, 184, 184, 0.3);
     height: 2px;
@@ -536,7 +563,7 @@ nav {
 
     main {
         padding: 20px 16px;
-        min-height: auto;
+        /* min-height: 100vh; */
     }
 
     .form-header {

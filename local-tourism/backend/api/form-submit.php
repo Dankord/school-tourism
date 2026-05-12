@@ -13,15 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 }
 
 $destination = trim($_POST['destination-name'] ?? '');
-$duration = $_POST['trip-duration'] ?? '';
+$province = $_POST['province'] ?? '';
+$date = $_POST['trip-date'] ?? '';
 $type = $_POST['trip-type'] ?? '';
 $satisfaction = $_POST['satisfaction'] ?? '';
 $understanding = $_POST['understanding'] ?? '';
 $maintenance = $_POST['maintenance'] ?? '';
+$transportation = $_POST['transportation'] ?? '';
+$affordable = $_POST['affordable'] ?? '';
+$facilities = $_POST['facilities'] ?? '';
 $recommendation = $_POST['recommendation'] ?? '';
+$issues = $_POST['issues'] ?? '';
 $suggestion = $_POST['suggestion'] ?? '';
 
-if (!$destination || !$duration || !$type || !$satisfaction || !$understanding || !$maintenance || !$recommendation) {
+if (!$destination || !$province || !$date || !$type || !$satisfaction || !$understanding || !$maintenance || !$transportation || !$affordable || !$facilities || !$recommendation) {
     die("Missing require fields");
 }
 
@@ -33,20 +38,25 @@ function generateSubmissionCode($prefix = 'GR1') {
 
 $insert = $connection->prepare("
     INSERT INTO responses
-    (submission_id, destination_name, trip_duration, trip_type, satisfaction, understanding, maintenance, recommendation, suggestion)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    (submission_id, destination_name, trip_date, trip_type, satisfaction, understanding, maintenance, transportation, affordable, facilities, recommendation, issues, suggestion)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ");
 
 $insert->bind_param(
-    "sssssssss",
+    "ssssssssssssss",
     $submissionCode,
     $destination,
-    $duration,
+    $province,
+    $date,
     $type,
     $satisfaction,
     $understanding,
     $maintenance,
+    $transportation,
+    $affordable,
+    $facilities,
     $recommendation,
+    $issues,
     $suggestion
 );
 
