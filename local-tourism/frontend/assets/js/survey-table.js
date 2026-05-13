@@ -1,7 +1,7 @@
 const tbody = document.getElementById('tableBody');
-    const joinedCount = document.getElementById('joinedCount');
+const joinedCount = document.getElementById('joinedCount');
 
-    function renderStarsFromSatisfaction(satisfactionValue) {
+    function renderStars(satisfactionValue) {
       const starsCount = Math.max(0, Math.min(5, Math.round(Number(satisfactionValue) || 0)));
       let html = '<span class="stars">';
 
@@ -40,9 +40,9 @@ const tbody = document.getElementById('tableBody');
           <td class="col-destination">${d.name}</td>
           <td class="col-students">${d.students}</td>
           <td class="col-recommendation"><span>${formatRecommendationPercent(d.recommendation_percent)}</span></td>
-          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_maintenance)}</td>
-          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_understanding)}</td>
-          <td class="col-satisfaction">${renderStarsFromSatisfaction(d.average_satisfaction)}</td>
+          <td class="col-satisfaction">${renderStars(d.average_maintenance)}</td>
+          <td class="col-satisfaction">${renderStars(d.average_understanding)}</td>
+          <td class="col-satisfaction">${renderStars(d.average_satisfaction)}</td>
         </tr>
       `).join('');
     }
@@ -52,6 +52,7 @@ const tbody = document.getElementById('tableBody');
       joinedCount.textContent = `Join ${count.toLocaleString()} students`;
     }
 
+    //fetch from the backend
     async function loadSurveyInsights() {
       try {
         const response = await fetch('../../backend/api/get-response.php', {

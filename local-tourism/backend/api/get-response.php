@@ -22,14 +22,14 @@ $totalRespondent = "
 $fetchDestinations = "
     SELECT
         destination_name,
-        COUNT(*) AS total_students,
+        COUNT(*) AS total_responses,
         SUM(CASE WHEN LOWER(recommendation) = 'yes' THEN 1 ELSE 0 END) AS recommend_yes_count,
         AVG(CAST(satisfaction AS DECIMAL(10,2))) AS average_satisfaction,
         AVG(CAST(maintenance AS DECIMAL(10,2))) AS average_maintenance,
         AVG(CAST(understanding AS DECIMAL(10,2))) AS average_understanding
     FROM responses
     GROUP BY destination_name
-    ORDER BY total_students DESC, destination_name ASC
+    ORDER BY total_responses DESC, destination_name ASC
 ";
 
 // set the data 
@@ -52,10 +52,10 @@ $totalResponses = (int) ($summaryRow['total_responses'] ?? 0);
 $destinations = [];
 
 while ($row = $destinationResult->fetch_assoc()) {
-    $students = (int) $row['total_students'];
+    $responses = (int) $row['total_responses'];
     $recommendYes = (int) $row['recommend_yes_count'];
-    $recommendationPercent = $students > 0
-        ? round(($recommendYes / $students) * 100, 2)
+    $recommendationPercent = $responses > 0
+        ? round(($recommendYes / $responses) * 100, 2)
         : 0;
     $averageSatisfaction = (float) ($row['average_satisfaction'] ?? 0);
     $averageMaintenance = (float) ($row['average_maintenance'] ?? 0);
@@ -63,7 +63,7 @@ while ($row = $destinationResult->fetch_assoc()) {
 
     $destinations[] = [
         'name' => $row['destination_name'],
-        'students' => $students,
+        'students' => $responses,
         'recommendation_percent' => $recommendationPercent,
         'average_satisfaction' => round($averageSatisfaction, 2),
         'average_maintenance' => round($averageMaintenance, 2),

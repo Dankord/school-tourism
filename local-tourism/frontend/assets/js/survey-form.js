@@ -38,6 +38,7 @@ function updateProgress() {
 
 showStep(currentStep);
 
+//FORCE POSTTTT
 if (form) {
     form.addEventListener('submit', () => {
         // Force explicit POST PLEASE, this took me 2 HOURSSS

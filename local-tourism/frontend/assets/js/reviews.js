@@ -20,10 +20,6 @@ function setupMobileNav() {
     });
 }
 
-function pluralizeReviews(count) {
-    return `${count} review${count === 1 ? "" : "s"}`;
-}
-
 function renderProvinceProgress(provinceProgress = []) {
     const progressByProvince = {};
     provinceProgress.forEach((item) => {
@@ -42,7 +38,7 @@ function renderProvinceProgress(provinceProgress = []) {
         }
 
         if (review) {
-            review.textContent = pluralizeReviews(Number(data.respondents) || 0);
+            review.textContent = `${data.respondents} reviews`
         }
     });
 }
@@ -69,11 +65,15 @@ function renderTopDestinations(topDestinations = []) {
     });
 }
 
+//backend fetch
 async function fetchReviews() {
     try {
-        const response = await fetch("../../backend/api/get-reviews.php");
+        const response = await fetch("../../backend/api/get-reviews.php", {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+        });
         if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+            throw new Error(`Failed to fetch reviews.`);
         }
 
         const data = await response.json();
