@@ -535,7 +535,7 @@ footer {
         order: 3;
         margin-top: 6px;
     }
-
+    /* burger menu */
     .navbar.nav-open .navigations {
         display: block;
     }
@@ -617,5 +617,8 @@ footer {
     .insight-button {
         width: 100%;
         max-width: 300px;
+    }
+    .card {
+        margin: 0 auto;
     }
 }
