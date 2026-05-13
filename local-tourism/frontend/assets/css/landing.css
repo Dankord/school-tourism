@@ -1,9 +1,14 @@
 * {
     font-family: 'DM Sans', Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
+}
+:root {
+    --border: rgba(184, 184, 184, 0.3);
+    --navbar-bg: rgba(0, 0, 0, 0.5);
 }
 body {
     margin: 0;
@@ -21,24 +26,52 @@ nav {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
-/* .logo-container h3 {
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+.logo-container h1 {
     font-size: 20px;
     margin-left: 10px;
     font-weight: bold;
     color: white;
-} */
+}
 
 .navbar {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 20em;
+    width: 100%;
+    padding: 10px 24px;
+}
+
+.logo {
+    color:#2DE348;
 }
 
 .nav-links {
     display: flex;
     justify-content: space-between;
     list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-toggle {
+    display: none;
+    border: 1px solid rgba(184, 184, 184, 0.5);
+    background: transparent;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.menu-toggle svg {
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .navigations a {
@@ -84,7 +117,9 @@ nav {
     line-height: 1.6;
 }
 .home-content {
-    padding: 0 20em;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
     height: calc(100vh - 74px);
     display: flex;
     justify-content: space-between;
@@ -125,7 +160,7 @@ nav {
     font-size: 20px;
     display: flex;
     align-items: center;
-    width: 150px;
+    width: 200px;
     justify-content: center;
     border-radius: 10px;
     gap: 5px;
@@ -144,7 +179,7 @@ nav {
     font-size: 20px;
     display: flex;
     align-items: center;
-    width: 150px;
+    width: 200px;
     justify-content: center;
     border-radius: 10px;
     border: 1px solid rgb(112, 112, 112);
@@ -199,10 +234,17 @@ nav {
 }
 
 .cam {
+    width: 100%;
+    max-height: 560px;
+    height: auto;
     animation:
     camEnterFromTheSide 0.80s ease-out 0.2s forwards,
     floatCam 3s ease-in-out infinite;
     animation-delay: 0s, 0.9s;
+}
+
+.tour-img {
+    max-width: 40%;
 }
 
 .survey-part {
@@ -229,7 +271,8 @@ nav {
 }
 
 .mission {
-    padding: 0px 20em;
+    width: min(1400px, 100%);
+    padding: 0 24px;
 }
 
 .mission-container h1 {
@@ -240,8 +283,8 @@ nav {
 
 .coverage-container {
     background-color: #16303B;
-    height: 500px;
-    width: 500px;
+    min-height: 500px;
+    width: min(500px, 100%);
     border-radius: 20px;
     border: 1px solid #8B8B8B;
 }
@@ -249,10 +292,11 @@ nav {
 .mission-between {
     display: flex;
     justify-content: space-between;
+    gap: 30px;
 }
 
 .mission-info {
-    max-width: 50%;
+    max-width: 56%;
 }
 
 .mission-text {
@@ -324,7 +368,13 @@ nav {
     border-bottom: 2px solid rgba(184, 184, 184, 0.3);
     width: 25em;
     height: 2px;
-    margin: 40px 25px;
+    margin: 30px 25px;
+    max-width: calc(100% - 50px);
+}
+
+.pop-des {
+    font-size: 12px;
+    color:#AFAFAF;
 }
 
 .coverage-pill {
@@ -344,7 +394,7 @@ nav {
 
 .page {
     margin: 100px 0px;
-    width: 80em;
+    width: min(80em, calc(100vw - 48px));
 }
 
 .experience-headers {
@@ -367,6 +417,7 @@ nav {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .card {
     background-color: #163B37;
@@ -374,7 +425,7 @@ nav {
     border-radius: 10px;
     border: 1px solid gray;
     padding: 25px 10px;
-    width: 25em;
+    /* width: min(25em, 100%); */
 }
 
 .card h2 {
@@ -435,4 +486,136 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 30px;
+}
+
+@media (max-width: 1200px) {
+    .home-content {
+        min-height: calc(100vh - 74px);
+        height: auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .title-description h1 {
+        font-size: 52px;
+    }
+
+    .sub-heading {
+        font-size: 20px;
+    }
+
+    .mission-between {
+        flex-direction: column;
+    }
+
+    .mission-info,
+    .coverage-container {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+    }
+
+    .navigations {
+        width: 100%;
+        display: none;
+        order: 3;
+        margin-top: 6px;
+    }
+
+    .navbar.nav-open .navigations {
+        display: block;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(184, 184, 184, 0.3);
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .nav-links li {
+        padding: 0;
+    }
+
+    .navigations a {
+        display: block;
+        margin: 0;
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+
+    .nav-button {
+        text-align: center;
+    }
+
+    .home-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    .tour-img {
+        max-width: 100%;
+        align-self: center;
+    }
+
+    .title-description h1 {
+        font-size: 44px;
+    }
+}
+
+@media (max-width: 640px) {
+    .title-description h1 {
+        font-size: 34px;
+    }
+
+    .sub-heading {
+        font-size: 16px;
+    }
+
+    .landing-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .survey-button,
+    .learn-button {
+        width: 100%;
+    }
+
+    .mission-text {
+        font-size: 16px;
+    }
+
+    .experience-headers h1 {
+        font-size: 28px;
+    }
+
+    .sub p {
+        font-size: 16px;
+    }
+
+    .insight-button {
+        width: 100%;
+        max-width: 300px;
+    }
 }
