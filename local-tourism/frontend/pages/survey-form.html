@@ -38,7 +38,7 @@
                 <div class="formStep active">
                     <div class="destination-name">
                         <label>Destination Name</label>
-                        <input type="text" id="text" class="input-text" name="destination-name"
+                        <input type="text" id="text" class="input-text" name="destination-name" minlength="2" maxlength="50"
                             placeholder="e.g., Boracay, Batanes, Bohol" required>
                     </div>
                     <div class="destination-name">
@@ -213,8 +213,8 @@
                 </div>
             </form>
         </div>
-
     </main>
+    <div id="formToast" class="form-toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
     <script src="../assets/js/survey-form.js"></script>
 </body>
 
