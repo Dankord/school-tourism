@@ -671,3 +671,32 @@ nav {
         font-size: 24px;
     }
 }
+
+.form-toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    max-width: min(420px, calc(100vw - 32px));
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: #163B37;
+    border: 1px solid #2BF8D6;
+    color: #e8f0ee;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    text-align: center;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.form-toast.form-toast--visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
