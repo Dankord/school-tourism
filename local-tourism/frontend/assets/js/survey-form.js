@@ -7,6 +7,14 @@ const toastEl = document.getElementById('formToast');
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('trip-date').max = today;
 
+const formLoadedAtEl = document.getElementById('form_loaded_at');
+if (formLoadedAtEl) formLoadedAtEl.value = String(Date.now());
+
+const captchaQuestionEl = document.getElementById('captchaQuestion');
+const captchaInputEl = document.getElementById('captcha_answer');
+const captchaRefreshBtn = document.getElementById('captchaRefresh');
+const honeypotEl = document.getElementById('website');
+
 let currentStep = 0;
 
 function textLeadingCharInvalid(value) {
@@ -109,6 +117,11 @@ const serverErrorMessages = {
     missing: 'Some required answers are missing. Please review each step.',
     invalid_start: 'Text cannot start with a number or a hyphen. Please fix the highlighted fields.',
     server: 'We could not save your survey. Please try again in a moment.',
+    spam: 'Your submission was flagged as automated. Please try again.',
+    too_fast: 'Please take a moment to review your answers before submitting.',
+    captcha: 'The verification answer was incorrect. Please try the new question.',
+    rate_fast: 'You just submitted a response. Please wait a few minutes before trying again.',
+    rate_hour: 'You have submitted several responses recently. Please try again later.',
 };
 
 if (typeof URLSearchParams !== 'undefined' && toastEl) {
@@ -127,6 +140,15 @@ if (form) {
         form.method = 'POST';
         trimFreeTextFields();
         if (!validateLeadingCharFields()) return;
+        if (honeypotEl && honeypotEl.value.trim() !== '') {
+            showToast(serverErrorMessages.spam);
+            return;
+        }
+        if (captchaInputEl && captchaInputEl.value.trim() === '') {
+            showToast('Please answer the verification question before submitting.');
+            captchaInputEl.focus();
+            return;
+        }
         if (!form.checkValidity()) {
             form.reportValidity();
             return;
@@ -134,3 +156,27 @@ if (form) {
         form.submit();
     });
 }
+
+function loadCaptcha() {
+    if (!captchaQuestionEl) return;
+    captchaQuestionEl.textContent = 'Loading...';
+    if (captchaInputEl) captchaInputEl.value = '';
+    fetch('../../backend/api/captcha.php', { credentials: 'same-origin', cache: 'no-store' })
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data) => {
+            if (data && data.success && typeof data.question === 'string') {
+                captchaQuestionEl.textContent = data.question;
+            } else {
+                captchaQuestionEl.textContent = 'Unavailable. Refresh and try again.';
+            }
+        })
+        .catch(() => {
+            captchaQuestionEl.textContent = 'Unavailable. Refresh and try again.';
+        });
+}
+
+if (captchaRefreshBtn) {
+    captchaRefreshBtn.addEventListener('click', loadCaptcha);
+}
+
+loadCaptcha();
