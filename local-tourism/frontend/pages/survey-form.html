@@ -34,6 +34,11 @@
                 <p>Where did your adventure journey take you?</p>
             </div>
             <form id="form" action="../../backend/api/form-submit.php" method="POST">
+                <input type="hidden" id="form_loaded_at" name="form_loaded_at" value="">
+                <div class="hp-field" aria-hidden="true">
+                    <label>Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
                 <!-- step 1 -->
                 <div class="formStep active">
                     <div class="destination-name">
@@ -204,6 +209,14 @@
                         <label>What suggestions can you give to improve future trips?</label>
                         <textarea id="addition" name="suggestion"
                             placeholder="Any suggestion for future travelers..."></textarea>
+                    </div>
+                    <div class="form-captcha">
+                        <label for="captcha_answer">Quick check: <span id="captchaQuestion">Loading...</span></label>
+                        <div class="captcha-row">
+                            <input type="text" id="captcha_answer" name="captcha_answer" class="input-text"
+                                inputmode="numeric" autocomplete="off" maxlength="4" placeholder="Your answer" required>
+                            <button type="button" id="captchaRefresh" class="captcha-refresh" title="Get a new question">&#x21bb;</button>
+                        </div>
                     </div>
                     <div class="divider"></div>
                     <div class="buttons">

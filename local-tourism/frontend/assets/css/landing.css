@@ -609,16 +609,24 @@ footer {
     .experience-headers h1 {
         font-size: 28px;
     }
+    .experience-headers {
+        margin: 6px;
+    }
 
     .sub p {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .insight-button {
         width: 100%;
         max-width: 300px;
+        margin-bottom: 50px;
+    }
+    .mission-container h1 {
+        margin-top: 50px;
     }
     .card {
         margin: 0 auto;
+        padding: 20px 30px;
     }
 }
